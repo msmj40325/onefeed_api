@@ -1,0 +1,17 @@
+FROM node:16-alpine3.15
+
+RUN npm i -g nodemon
+
+WORKDIR /api
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . /api
+
+ENV ACCESS_TOKEN_SECRET=fbca036528c9a8e661736f16ca91e4fd0c2a2f992237a9ba3f692b782f6f338410c07166d1dc95da52f3b30998444a8800e3b46d38491fd33fc81c32647fe37f REFRESH_TOKEN_SECRET=34522b51b9d1da23ef3f5e893c9054dc98af1f5dbf65d727ac9c4d2492433ac6a16ef53dbb09294f49912fa8a8faca4a622b2fdaab41cf75481cd8570609358f DB_HOST=db DB_USER=root DB_PASSWORD=root DB=onefeed
+
+EXPOSE 1337
+
+CMD ["npm", "run", "serve"]
